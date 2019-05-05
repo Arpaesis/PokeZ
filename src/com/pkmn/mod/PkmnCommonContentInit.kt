@@ -4,6 +4,7 @@ import com.pkmn.mod.entities.EntityBulbasaur
 import com.pkmn.mod.entities.EntityCharmander
 import com.pkmn.mod.entities.EntityMewtwo
 import com.pkmn.mod.entities.EntitySquirtle
+import com.pkmn.mod.items.PkmnItems
 import com.zerra.api.registry.EntityRegistry
 import com.zerra.common.Zerra
 import com.zerra.common.load.LoadingManager
@@ -11,11 +12,19 @@ import com.zerra.common.util.Logging
 import com.zerra.common.util.ResourceLocation
 import com.zerra.common.world.entity.Entity
 import com.zerra.common.world.storage.Layer
+import com.zerra.api.registry.RegistryNameable
+import com.zerra.api.registry.Registries
+import com.zerra.common.Reference
 
 class PkmnCommonContentInit: Logging() {
     companion object {
         private var registered: Boolean = false
         val instance = PkmnCommonContentInit()
+    }
+
+    protected fun reg(obj: RegistryNameable) {
+        obj.setDomain(Reference.DOMAIN)
+        Registries.register(obj)
     }
 
     /**
@@ -40,7 +49,7 @@ class PkmnCommonContentInit: Logging() {
      */
     open fun init(loadingManager: LoadingManager) {
         regEntities()
-
+        regItems()
         registered = true
     }
 
@@ -54,5 +63,9 @@ class PkmnCommonContentInit: Logging() {
         regEntity("pkmn:squirtle", EntitySquirtle::class.java) { _, layer -> EntitySquirtle(layer) }
         regEntity("pkmn:charmander", EntityCharmander::class.java) { _, layer -> EntityCharmander(layer) }
         regEntity("pkmn:mewtwo", EntityMewtwo::class.java) { _, layer -> EntityMewtwo(layer) }
+    }
+
+    fun regItems() {
+        reg(PkmnItems.POTION)
     }
 }
