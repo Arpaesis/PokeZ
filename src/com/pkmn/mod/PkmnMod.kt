@@ -7,7 +7,7 @@ import com.zerra.api.mod.info.ModInfoBuilder
 import com.zerra.common.Reference
 import com.zerra.common.util.Side
 
-class PkmnMod: Mod {
+object PkmnMod: Mod {
     override val modInfo: ModInfo
         get() =  ModInfoBuilder("pkmn", "Pokemon Mod", "1.0", Reference.VERSION)
                 .setModDescription("A Pokemon mod for Zerra.")

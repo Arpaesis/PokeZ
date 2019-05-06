@@ -19,7 +19,7 @@ class PkmnServerContentInit private constructor() : ZerraCommonContentInit() {
         this.regSpawns()
 
         ZerraServer.instance.eventHandler.registerCallback(EntityLivingEvent.Update::class.java, Consumer {
-            var e = it.entity
+            val e = it.entity
 
 
             if(e is EntityPlayer && e.ticksExisted % 20 == 0)
@@ -32,11 +32,7 @@ class PkmnServerContentInit private constructor() : ZerraCommonContentInit() {
                         if(world.random.nextInt(100) < 10)
                         {
                             val entity = EntityRegistry.getNewEntityInstance<Entity>(ResourceLocation("pkmn:bulbasaur"), world.zerra, world.getLayer(0))
-                            entity?.let { pkmn ->
-                                // pkmn.setPosition(e.position)
-                                // .addEntity(pkmn)
-                                println("POKEMON ENCOUNTER")
-                            }
+                            println("POKEMON ENCOUNTER")
                         }
                     }
                 }
